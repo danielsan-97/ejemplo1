@@ -1,0 +1,118 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: { typeName: 'Padre',
+                  title:{ type: #STANDARD,
+                          label: 'hija'}
+}
+
+annotate entity ZC_PADRE_DM with
+{
+
+  @UI.facet: [{
+
+      id: 'padre',
+      purpose: #STANDARD,
+      type:  #IDENTIFICATION_REFERENCE,
+      label: 'Aca esta lo la padre',
+      position: 10
+   },
+   { 
+      id: 'muestra_hijo',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Relacion de la hija',
+      position: 20,
+      targetElement: '_asopadre'
+   }]
+
+
+
+  @EndUserText.label: 'Id'
+  @UI: {
+  lineItem: [{ position: 10 }, //Aparezca la columna
+             { type: #FOR_ACTION, dataAction: 'actualizar_status', label: 'Actualizate', position: 10 }//Para el boton
+            ], 
+  
+  selectionField: [{ position: 10 }],  //Aparezca el filtro
+  identification: [{ position: 10,
+                      label: 'EL id' }]
+  }
+  id;
+
+  @EndUserText.label: 'ID estudiante'
+  @UI: {
+  lineItem: [{ position: 20 }],   //Aparezca la columna
+  identification: [{ position: 20,
+                      label: 'EL estu' }]
+  }
+  studentid;
+
+  @EndUserText.label: 'First Name'
+  @UI: {
+  lineItem: [{ position: 30 }],   //Aparezca la columna
+  identification: [{ position: 30,
+                      label: 'EL primer nombre' }] //esto es para que aparezca la cajita y poner nombres
+  }
+  firstname;
+
+  @EndUserText.label: 'Lastname'
+  @UI: {
+  lineItem: [{ position: 40 }],   //Aparezca la columna
+  identification: [{ position: 40,
+                      label: 'El ultimo apellido' }]
+       }
+  lastname;
+
+  @EndUserText.label: 'Age'
+  @UI: {
+  lineItem: [{ position: 50 }],   //Aparezca la columna
+  identification: [{ position: 50, //Aparezca en las opciones de guardado y actualizacion
+                      label: 'La edad' }]
+  }
+  studentage;
+
+  @EndUserText.label: 'Course'
+  @UI: {
+  lineItem: [{ position: 60 }],   //Aparezca la columna
+  identification: [{ position: 60, //Aparezca en las opciones de guardado y actualizacion
+                      label: 'El curso' }]
+  }
+  course;
+
+  @EndUserText.label: 'Duracion Curso'
+  @UI: {
+  lineItem: [{ position: 70 }],   //Aparezca la columna
+  identification: [{ position: 70, //Aparezca en las opciones de guardado y actualizacion
+                      label: 'Duracion del curso' }]    
+  }
+  courseduration;
+
+  @EndUserText.label: 'Estatus'
+  @UI: {
+  lineItem: [{ position: 80 }],   //Aparezca la columna
+  identification: [{ position: 80,
+                      label: 'El status' }]
+  }
+  studentstatus;
+
+  @EndUserText.label: 'Gender'
+  @UI: {
+  lineItem: [{ position: 90 }]   //Aparezca la columna
+  }
+  gender;
+
+  @EndUserText.label: 'Dob'
+  @UI: {
+  lineItem: [{ position: 100 }] //Aparezca la columna
+  }
+  dob;
+
+  @UI.hidden: true
+  lastchangedat;
+
+  @UI.hidden: true
+  locallastchangedat;
+  /* Associations */
+  //    _asopadre;
+
+}

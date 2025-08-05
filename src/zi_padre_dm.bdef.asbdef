@@ -1,0 +1,86 @@
+    unmanaged implementation in class z_cl_bp_i_padre_dm unique;
+    strict ( 2 );
+
+    with draft;
+
+    define behavior for ZI_PADRE_DM alias padrecito
+
+    draft table ztt_d_padre_dm
+
+    //late numbering
+    early numbering
+
+    lock master
+    total etag locallastchangedat
+
+    authorization master ( instance )
+    etag master locallastchangedat
+    {
+      create; //( authorization : global ); esto venia por defecto pero se quito por q en el video no aparece
+      update ( features : instance );
+      delete ( features : instance );
+      field ( readonly ) id;
+      association _asopadre { create; with draft; }
+
+      draft action Edit;
+      draft action Activate;
+      draft action Discard;
+      draft action Resume;
+
+      field ( mandatory ) firstname, lastname, studentage; //esto es para que estos campos sean obligatorios
+      validation validate_fields on save { create; update; }
+
+//     determination actualizar_duracion_curso on save { field course; } //ESTE ES PARA PROBAR U CASO O EL OTRO
+     determination actualizar_duracion_curso on modify { field course; }
+     side effects { field course affects field courseduration;}
+
+      draft determine action Prepare{
+        validation validate_fields;
+//        determination actualizar_duracion_curso; "CUANDO SE HACE POR MODIFY NO SE PONE AQUI
+      }
+      field ( readonly ) gender, studentid;
+
+      action actualizar_status parameter ZA_PADRE_ENTITY result [1] $self;
+
+      mapping for ztt_padre_dm control zst_padre_aux_dm
+        {
+          id                 = id;
+          studentid          = studentid;
+          firstname          = firstname;
+          lastname           = lastname;
+          studentage         = studentage;
+          course             = course;
+          courseduration     = courseduration;
+          studentstatus      = studentstatus;
+          gender             = gender;
+          dob                = dob;
+          lastchangedat      = lastchangedat;
+          locallastchangedat = locallastchangedat;
+        }
+    }
+
+    define behavior for ZI_HIJA_DM alias hijita
+
+    draft table ztt_d_hijo_dm
+
+    //late numbering
+    early numbering
+    lock dependent by _asohija
+    authorization dependent by _asohija
+    etag dependent by _asohija
+    {
+      update;
+      delete;
+      field ( readonly ) id;
+      association _asohija { with draft; }
+
+      field ( readonly ) course, semester;
+
+      mapping for ztt_hijo_dm
+        {
+          id        = id;
+          course    = course;
+          semester  = semester;
+          semresult = semresult;
+        }
+    }

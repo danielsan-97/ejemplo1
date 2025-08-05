@@ -1,0 +1,13 @@
+@Metadata.layer: #CORE
+annotate entity ZA_PADRE_ENTITY with
+{
+  @EndUserText.label: 'Change status' //ESTO ES LO QUE APARECE EN LA VENTANA EMERGENTE
+  studentstatus;
+  
+  @EndUserText.label: 'Change Cursirijillo'
+  course;
+  
+  @EndUserText.label: 'Change duracion'
+  courseduration;   
+
+}

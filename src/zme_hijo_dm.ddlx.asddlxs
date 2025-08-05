@@ -1,0 +1,61 @@
+@Metadata.layer: #CORE
+
+//@UI.headerInfo: { typeName: 'Hija'
+//}
+
+@UI:{
+headerInfo:{
+typeName: 'Hija',
+typeNamePlural: 'Hijas',
+title:{ type: #STANDARD,
+label: 'hija'}
+ }
+
+}
+annotate entity ZC_HIJA_DM with
+{
+  @UI.facet: [{
+
+  id: 'hijo',
+  purpose: #STANDARD,
+  type:  #IDENTIFICATION_REFERENCE,
+  label: 'Aca esta lo del hijo',
+  position: 10
+  }]
+
+
+  @EndUserText.label: 'Id'
+  @UI: {
+  lineItem: [{ position: 10 }], //Aparezca la columna
+  identification: [{ position: 10,
+                      label: 'EL id' }]
+  }
+  id;
+
+  @EndUserText.label: 'Course'
+  @UI: {
+  lineItem: [{ position: 20 }], //Aparezca la columna
+  identification: [{ position: 20,
+                      label: 'Course' }]
+  }
+  course;
+
+  @EndUserText.label: 'Semester'
+  @UI: {
+  lineItem: [{ position: 30 }], //Aparezca la columna
+  identification: [{ position: 30,
+                    label: 'Semester' }]
+  }
+  semester;
+
+  @EndUserText.label: 'Resultado'
+  @UI: {
+  lineItem: [{ position: 40 }], //Aparezca la columna
+  identification: [{ position: 40,
+                    label: 'Resultado' }]
+  }
+  semresult;
+  /* Associations */
+  //  _asohija;
+
+}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition para EJEMPLO RAP unm'
+define service ZSD_PADRE {
+  expose ZC_PADRE_DM as padre;
+  expose ZC_HIJA_DM  as hija;
+}
